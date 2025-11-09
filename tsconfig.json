@@ -1,0 +1,47 @@
+{
+	"files": [],
+	"references": [
+		{ "path": "packages/processer" },
+		{ "path": "packages/shared" },
+		{ "path": "packages/core" },
+		{ "path": "bots/client" },
+		{ "path": "bots/helper" }
+	],
+	"compilerOptions": {
+		"target": "ES2022",
+		"lib": ["ES2023"],
+		"module": "ES2022",
+		"moduleResolution": "Node",
+		"resolveJsonModule": true,
+		"importHelpers": true,
+		"pretty": true,
+		"noEmitOnError": true,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"noImplicitAny": false,
+		"strictNullChecks": true,
+		"skipDefaultLibCheck": true,
+		"skipLibCheck": true,
+
+		// Project references
+		"composite": true,
+		"declaration": true,
+		"declarationMap": true,
+		"sourceMap": true,
+
+		"baseUrl": ".",
+		"paths": {
+			"@cartiqo-framework/core": ["packages/core/src"],
+			"@cartiqo-framework/core/*": ["packages/core/src/*"],
+			"@cartiqo-framework/shared": ["packages/shared/src"],
+			"@cartiqo-framework/shared/*": ["packages/shared/src/*"],
+			"@cartiqo-framework/processer": ["packages/processer/src"],
+			"@cartiqo-framework/processer/*": ["packages/processer/src/*"],
+			"@cartiqo-framework/bot": ["bots/client/src/index.ts"],
+			"@cartiqo-framework/helper": ["bots/helper/src/index.ts"]
+		}
+	},
+	"types": ["node"]
+}

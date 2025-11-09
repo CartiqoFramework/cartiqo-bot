@@ -1,0 +1,36 @@
+name: 🎯 Enhancement / Optimization
+description: Suggest improvements to performance, code quality, or existing features
+title: '[Enhancement]: '
+labels: ['enhancement']
+assignees: []
+
+body:
+  - type: textarea
+    id: improvement
+    attributes:
+      label: 📋 What should be improved?
+      description: Describe what part of the bot or codebase could be optimized.
+      placeholder: 'Command execution is slow when fetching user data.'
+    validations:
+      required: true
+
+  - type: textarea
+    id: change
+    attributes:
+      label: 💡 Suggested Change
+      description: Explain how it should be improved.
+      placeholder: 'Cache user data to reduce API calls and improve response time.'
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 📸 Evidence / Context
+      description: Add benchmarks, logs, or reasoning to support the suggestion.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: ➕ Additional Context
+      description: Include any other relevant details or related issues.

@@ -1,0 +1,37 @@
+name: ✨ Feature Request
+description: Suggest a new feature for the bot
+title: '[Feature]: '
+labels: ['feature']
+assignees: []
+
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: ❓ Problem
+      description: Is your feature request related to a problem? If yes, describe it.
+      placeholder: "I'm always frustrated when [...]"
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: 💡 Proposed Solution
+      description: Describe the solution you'd like to see.
+      placeholder: 'Add a command that [...]'
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 🔄 Alternatives
+      description: List any alternative solutions or features you’ve considered.
+      placeholder: 'Instead of adding a new command, maybe improve [...]'
+
+  - type: textarea
+    id: context
+    attributes:
+      label: ➕ Additional Context
+      description: Add any extra info, details, or screenshots.

@@ -1,0 +1,18 @@
+generator clientCartiqo {
+  provider = "prisma-client-js"
+  output   = "../../packages/core/prisma/cartiqo"
+}
+
+datasource cartiqo_db {
+  provider = "mysql"
+  url      = env("DATABASE_URL_CARTIQO")
+}
+
+model GuildConfig {
+  guildId            String          @unique
+  guildName          String?
+  language           String          @default("en-US")
+  errorLogChannelId  String?
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+}

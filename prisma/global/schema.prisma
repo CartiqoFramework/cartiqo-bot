@@ -1,0 +1,79 @@
+generator clientGlobal {
+    provider = "prisma-client-js"
+    output   = "../../packages/core/prisma/global"
+}
+
+datasource global_db {
+    provider = "mysql"
+    url      = env("DATABASE_URL_GLOBAL")
+}
+
+// NOT GUILDS THAT THE BOT IS IN, BUT SUPPORT GUILDS WHERE PEOPLE CAN GET SUPPORTog hva 
+model SupportGuilds {
+    guildId      String        @unique
+    guildName    String
+    language     String        @default("en-US")
+    category     GuildCategory @default(COMMUNITY)
+    logChannelId String?
+    createdAt    DateTime      @default(now())
+    updatedAt    DateTime      @updatedAt
+    StaffUsers   StaffUsers[]
+}
+
+enum GuildCategory {
+    LANGUAGE
+    COMMUNITY
+    HEAD_SUPPORT
+}
+
+model StaffUsers {
+    id       Int     @id @default(autoincrement())
+    guildId  String
+    userId   String
+    username String?
+
+    role        StaffRoles @default(Trial_Moderator)
+    departments Json? // store ["Appeals", "Reports", "Stachio"] 
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    guild SupportGuilds @relation(fields: [guildId], references: [guildId])
+}
+
+enum StaffRoles {
+    Owner
+    Senior_Administrator
+    Administrator
+    Trial_Administrator
+    Senior_Moderator
+    Moderator
+    Trial_Moderator
+}
+
+model PremiumCode {
+    code      String      @id @default(cuid())
+    tier      PremiumTier
+    duration  Int // In days
+    createdAt DateTime    @default(now())
+    redeemed  Boolean     @default(false)
+}
+
+enum PremiumTier {
+    Free
+    Silver
+    Gold
+    Platinum
+}
+
+model PremiumGuildConfig {
+    guildId   String   @unique
+    guildName String?
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    // 🔑 Premium fields
+    premiumTier         PremiumTier @default(Free)
+    premiumExpiresAt    DateTime?
+    redeemedPremiumCode String?
+}
