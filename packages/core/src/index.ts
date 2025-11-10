@@ -1,3 +1,19 @@
+export const validBanCategories = new Set(['Global', 'Discord', 'FiveM', 'Marketplace', 'Community']);
+export const validBanStatuses = new Set(['Permanent', 'Temporary', 'Indefinite']);
+export const validBanTypes = new Set([
+  'Toxicity', 'Harassment', 'HateSpeech', 'Discrimination', 'Bullying', 'Impersonation',
+  'Threats', 'Spamming', 'Advertising', 'Phishing', 'DataLeak', 'Doxxing', 'DDoS',
+  'ServerRaid', 'NSFWDistribution', 'AlternateAccount', 'Evasion', 'PrivacyViolation',
+  'Cheating', 'MacroUsage', 'ExploitUsage', 'ExploitDevelopment', 'Duping', 'ModMenuUsage',
+  'GameTampering', 'DeveloperAbuse', 'Scam', 'Chargeback', 'FraudulentActivity', 'AccountSales',
+  'UnauthorizedResale', 'FakeProof', 'FalseClaims', 'PaymentEvasion', 'CryptoScam', 
+  'StaffImpersonation', 'UnauthorizedAccess', 'TokenAbuse', 'BotAbuse', 'APIAbuse', 
+  'DataManipulation', 'PolicyViolation', 'BlacklistedEntity', 'FalseReporting', 
+  'ExploitDistribution', 'BanEvasion', 'PlatformAbuse', 'UnauthorizedAutomation', 
+  'ExploitSharing', 'SecurityThreat', 'Infiltration', 'InsiderThreat'
+]);
+
+
 // Re-export the client class
 export * from './CartiqoClient.js';
 

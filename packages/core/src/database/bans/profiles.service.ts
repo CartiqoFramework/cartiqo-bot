@@ -10,11 +10,9 @@ export async function getOrCreateBanProfile(
 		where: { discordId },
 	});
 
-	if (!profile) {
-		profile = await cartiqo.db.bans.banProfile.create({
-			data: { discordId, username, avatarUrl },
-		});
-	}
+	profile ??= await cartiqo.db.bans.banProfile.create({
+		data: { discordId, username, avatarUrl },
+	});
 
 	return profile;
 }
@@ -53,7 +51,7 @@ export async function deleteBanProfile(cartiqo: CartiqoClient, discordId: string
 /** Search for profiles by partial username */
 export async function searchBanProfiles(cartiqo: CartiqoClient, query: string, limit = 10) {
 	return cartiqo.db.bans.banProfile.findMany({
-		where: { username: { contains: query} },
+		where: { username: { contains: query } },
 		take: limit,
 		orderBy: { updatedAt: 'desc' },
 	});

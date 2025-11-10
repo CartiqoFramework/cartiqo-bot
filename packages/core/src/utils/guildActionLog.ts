@@ -1,5 +1,5 @@
 import { TextChannel, EmbedBuilder, ColorResolvable } from 'discord.js';
-import { PrismaClient, GuildCategory } from '../../prisma/global';
+import { PrismaClient, GuildCategory } from '../../prisma/global/index.js';
 import { CartiqoClient, logger, config } from '@cartiqo-framework/core';
 
 const prisma = new PrismaClient();
