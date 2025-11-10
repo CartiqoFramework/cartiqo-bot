@@ -146,3 +146,5 @@ package-lock.json
 /packages/processer
 /transcripts
 /packages/core/prisma
+/prisma/cartiqo/migrations
+/prisma/global/migrations
