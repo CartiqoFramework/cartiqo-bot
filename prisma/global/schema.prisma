@@ -51,29 +51,42 @@ enum StaffRoles {
     Trial_Moderator
 }
 
-model PremiumCode {
-    code      String      @id @default(cuid())
-    tier      PremiumTier
-    duration  Int // In days
-    createdAt DateTime    @default(now())
-    redeemed  Boolean     @default(false)
+model CartiqoUser {
+    id            String       @id @default(cuid())
+    discordId     String       @unique
+    username      String?
+    premiumActive Boolean      @default(false)
+    premiumTier   CartiqoTier  @default(Free)
+    linkedCodeId  String?      @unique
+    linkedCode    CartiqoCode? @relation(fields: [linkedCodeId], references: [id])
+    createdAt     DateTime     @default(now())
+    updatedAt     DateTime     @updatedAt
 }
 
-enum PremiumTier {
+model CartiqoCode {
+    id          String       @id @default(cuid())
+    code        String       @unique
+    tier        CartiqoTier
+    duration    Int?
+    createdAt   DateTime     @default(now())
+    redeemed    Boolean      @default(false)
+    redeemedAt  DateTime?
+    redeemedBy  String? // Discord ID of redeemer
+    cartiqoUser CartiqoUser?
+}
+
+enum CartiqoTier {
     Free
-    Silver
-    Gold
-    Platinum
+    CartiqoPlus
 }
 
-model PremiumGuildConfig {
-    guildId   String   @unique
-    guildName String?
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    // 🔑 Premium fields
-    premiumTier         PremiumTier @default(Free)
-    premiumExpiresAt    DateTime?
-    redeemedPremiumCode String?
+model CartiqoGuild {
+    guildId           String      @unique
+    guildName         String?
+    createdAt         DateTime    @default(now())
+    updatedAt         DateTime    @updatedAt
+    tier              CartiqoTier @default(Free)
+    expiresAt         DateTime?
+    activeCode        String?
+    activatedByUserId String?
 }

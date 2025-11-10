@@ -8,11 +8,54 @@ datasource cartiqo_db {
   url      = env("DATABASE_URL_CARTIQO")
 }
 
+// -----------------------------
+// Guild & Config Models
+// -----------------------------
 model GuildConfig {
-  guildId            String          @unique
-  guildName          String?
-  language           String          @default("en-US")
-  errorLogChannelId  String?
-  createdAt          DateTime        @default(now())
-  updatedAt          DateTime        @updatedAt
+  guildId           String   @unique
+  guildName         String?
+  language          String   @default("en-US")
+  errorLogChannelId String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  banConfig GlobalBanConfig?
+}
+
+// -----------------------------
+// Global Ban Config
+// -----------------------------
+model GlobalBanConfig {
+  id      Int         @id @default(autoincrement())
+  guild   GuildConfig @relation(fields: [guildId], references: [guildId], onDelete: Cascade)
+  guildId String      @unique
+
+  // -----------------------------
+  // Category Punishments
+  // -----------------------------
+  punishGlobal      BanAction @default(KICK)
+  punishDiscord     BanAction @default(KICK)
+  punishFiveM       BanAction @default(KICK)
+  punishMarketplace BanAction @default(KICK)
+  punishCommunity   BanAction @default(KICK)
+
+  // -----------------------------
+  // Optional Configurations
+  // -----------------------------
+  notifyOnBan        Boolean @default(true)
+  notifyChannelId    String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// -----------------------------
+// Enums
+// -----------------------------
+enum BanAction {
+  NONE // No action
+  WARN // Send warning
+  ROLE // Give role
+  KICK // Kick from guild
+  BAN // Permanently ban
 }

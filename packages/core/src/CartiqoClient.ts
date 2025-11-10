@@ -3,7 +3,7 @@ import { Client, Collection, GatewayIntentBits, Partials } from 'discord.js';
 import { config, ProjectInterface } from './config.js';
 import { logger } from './logger.js';
 
-import { PrismaClient as CartiqoBansPrisma } from '../prisma/cartiqo-bans';
+import { PrismaClient as CartiqoBansPrisma } from '../prisma/cartiqo-bans/index.js';
 import { PrismaClient as CartiqoPrisma } from '../prisma/cartiqo/index.js';
 import { PrismaClient as GlobalPrisma } from '../prisma/global/index.js';
 

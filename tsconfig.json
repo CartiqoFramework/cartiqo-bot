@@ -4,7 +4,7 @@
 		{ "path": "packages/processer" },
 		{ "path": "packages/shared" },
 		{ "path": "packages/core" },
-		{ "path": "bots/client" },
+		{ "path": "bots/cartiqo" },
 		{ "path": "bots/helper" }
 	],
 	"compilerOptions": {
@@ -39,7 +39,7 @@
 			"@cartiqo-framework/shared/*": ["packages/shared/src/*"],
 			"@cartiqo-framework/processer": ["packages/processer/src"],
 			"@cartiqo-framework/processer/*": ["packages/processer/src/*"],
-			"@cartiqo-framework/bot": ["bots/client/src/index.ts"],
+			"@cartiqo-framework/cartiqo": ["bots/cartiqo/src/index.ts"],
 			"@cartiqo-framework/helper": ["bots/helper/src/index.ts"]
 		}
 	},

@@ -72,8 +72,8 @@ export const config: ProjectInterface = {
 	},
 	guilds: [
 		{
-			name: 'Stachio',
-			id: '1413898198266941522',
+			name: 'CɅRTIQO.',
+			id: '1044098950455627867',
 		},
 		{
 			name: 'Stachio Development',
