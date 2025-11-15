@@ -35,6 +35,8 @@ export * from './utils/permissionGuard.js';
 // Database Services
 export * from './database/bans/bans.service.js';
 export * from './database/bans/profiles.service.js';
+export * from './database/cartiqo/globalBanConfig.service.js';
+export * from './database/cartiqo/guildConfig.service.js';
 
 // Re-export all handlers
 export * from './handlers/errors.js';
