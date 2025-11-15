@@ -35,6 +35,8 @@
 		"paths": {
 			"@cartiqo-framework/core": ["packages/core/src"],
 			"@cartiqo-framework/core/*": ["packages/core/src/*"],
+			"@cartiqo-framework/api": ["packages/api/src"],
+			"@cartiqo-framework/api/*": ["packages/api/src/*"],
 			"@cartiqo-framework/shared": ["packages/shared/src"],
 			"@cartiqo-framework/shared/*": ["packages/shared/src/*"],
 			"@cartiqo-framework/processer": ["packages/processer/src"],

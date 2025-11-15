@@ -1,0 +1,30 @@
+{
+	"name": "@cartiqo-framework/api",
+	"version": "1.0.0",
+	"description": "",
+	"homepage": "https://github.com/CartiqoFramework/cartiqo-bot#readme",
+	"bugs": {
+		"url": "https://github.com/CartiqoFramework/cartiqo-bot/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CartiqoFramework/cartiqo-bot.git"
+	},
+	"license": "MIT",
+	"author": "CartiqoFramework",
+	"type": "module",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"build": "tsc --build"
+	},
+	"devDependencies": {
+		"@types/node": "^24.5.1",
+		"typescript": "^5.9.2"
+	},
+	"dependencies": {
+		"discord.js": "^14.22.1",
+		"dotenv": "^17.2.2"
+	},
+	"packageManager": "npm@11.6.0"
+}
