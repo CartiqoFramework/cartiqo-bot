@@ -1,11 +1,15 @@
 import { SlashCommandInterface, EventInterface, PrefixCommandInterface } from '@cartiqo-framework/shared';
+
 import { Client, Collection, GatewayIntentBits, Partials } from 'discord.js';
+
 import { config, ProjectInterface } from './config.js';
 import { logger } from './logger.js';
 
 import { PrismaClient as CartiqoBansPrisma } from '../prisma/cartiqo-bans/index.js';
 import { PrismaClient as CartiqoPrisma } from '../prisma/cartiqo/index.js';
 import { PrismaClient as GlobalPrisma } from '../prisma/global/index.js';
+
+import { PrismaMariaDb } from '@prisma/adapter-mariadb';
 
 type PrismaMap = {
 	bans: CartiqoBansPrisma;
@@ -55,17 +59,45 @@ export class CartiqoClient extends Client {
 		});
 
 		this.config = config;
+
+		const bansAdapter = new PrismaMariaDb({
+			host: process.env.BANS_DB_HOST!,
+			port: Number(process.env.BANS_DB_PORT!),
+			user: process.env.BANS_DB_USER!,
+			password: process.env.BANS_DB_PASSWORD!,
+			database: process.env.BANS_DB_NAME!,
+			connectionLimit: 5,
+		});
+
+		const cartiqoAdapter = new PrismaMariaDb({
+			host: process.env.CARTIQO_DB_HOST!,
+			port: Number(process.env.CARTIQO_DB_PORT!),
+			user: process.env.CARTIQO_DB_USER!,
+			password: process.env.CARTIQO_DB_PASSWORD!,
+			database: process.env.CARTIQO_DB_NAME!,
+			connectionLimit: 5,
+		});
+
+		const globalAdapter = new PrismaMariaDb({
+			host: process.env.GLOBAL_DB_HOST!,
+			port: Number(process.env.GLOBAL_DB_PORT!),
+			user: process.env.GLOBAL_DB_USER!,
+			password: process.env.GLOBAL_DB_PASSWORD!,
+			database: process.env.GLOBAL_DB_NAME!,
+			connectionLimit: 5,
+		});
+
 		this.db = {
-			bans: new CartiqoBansPrisma(),
-			cartiqo: new CartiqoPrisma(),
-			global: new GlobalPrisma(),
+			bans: new CartiqoBansPrisma({ adapter: bansAdapter }),
+			cartiqo: new CartiqoPrisma({ adapter: cartiqoAdapter }),
+			global: new GlobalPrisma({ adapter: globalAdapter }),
 		};
 
 		this.initializeDatabaseLogging();
 	}
 
 	/**
-	 * Attaches event logging for all Prisma clients
+	 * Enable Prisma query logging on all schemas
 	 */
 	private initializeDatabaseLogging() {
 		for (const [name, client] of Object.entries(this.db)) {
@@ -77,15 +109,17 @@ export class CartiqoClient extends Client {
 			prisma.$on('error', (e) => logger.error(`[${name.toUpperCase()}] Error: ${e.message}`));
 		}
 
-		logger.info('✅ Prisma clients initialized and event logging attached');
+		logger.info('✅ Prisma clients initialized with MariaDB adapters');
 	}
 
 	/**
-	 * Gracefully disconnect all Prisma clients when shutting down
+	 * Clean shutdown for all Prisma clients
 	 */
 	public async disconnectDatabases() {
 		logger.info('🧹 Disconnecting Prisma clients...');
+
 		await Promise.all([this.db.bans.$disconnect(), this.db.cartiqo.$disconnect(), this.db.global.$disconnect()]);
+
 		logger.info('✅ Prisma clients disconnected');
 	}
 }

@@ -51,6 +51,11 @@
 		"setup:global": "npm run migrate:global && npm run generate:global",
 		"setup:all": "npm run migrate:all && npm run generate:all",
 		"Split_7": "________________________________________________________________",
+		"db:push:bans": "npx prisma db push --schema=prisma/bans/schema.prisma",
+		"db:push:cartiqo": "npx prisma db push --schema=prisma/cartiqo/schema.prisma",
+		"db:push:global": "npx prisma db push --schema=prisma/global/schema.prisma",
+		"db:push:all": "npm run db:push:bans && npm run db:push:cartiqo && npm run db:push:global",
+		"Split_8": "________________________________________________________________",
 		"check:bans": "npx prisma validate --schema=prisma/bans/schema.prisma",
 		"check:cartiqo": "npx prisma validate --schema=prisma/cartiqo/schema.prisma",
 		"check:global": "npx prisma validate --schema=prisma/global/schema.prisma",
@@ -58,8 +63,8 @@
 	},
 	"devDependencies": {
 		"prettier": "^3.6.2",
-		"prisma": "^6.16.2",
-		"turbo": "^2.5.6"
+		"prisma": "^7.0.0",
+		"turbo": "^2.6.1"
 	},
 	"dependencies": {
 		"@prisma/client": "^6.16.2"

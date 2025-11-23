@@ -1,11 +1,11 @@
 generator clientCartiqoBans {
-  provider = "prisma-client-js"
-  output   = "../../packages/core/prisma/cartiqo-bans"
+  provider   = "prisma-client-js"
+  output     = "../../packages/core/prisma/cartiqo-bans"
+  engineType = "client"
 }
 
 datasource cartiqo_bans_db {
   provider = "mysql"
-  url      = env("DATABASE_URL_CARTIQO_BANS")
 }
 
 // -----------------------------

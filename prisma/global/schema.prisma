@@ -1,11 +1,11 @@
 generator clientGlobal {
-    provider = "prisma-client-js"
-    output   = "../../packages/core/prisma/global"
+    provider   = "prisma-client-js"
+    output     = "../../packages/core/prisma/global"
+    engineType = "client"
 }
 
 datasource global_db {
     provider = "mysql"
-    url      = env("DATABASE_URL_GLOBAL")
 }
 
 // NOT GUILDS THAT THE BOT IS IN, BUT SUPPORT GUILDS WHERE PEOPLE CAN GET SUPPORTog hva 

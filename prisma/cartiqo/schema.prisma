@@ -1,11 +1,11 @@
 generator clientCartiqo {
-  provider = "prisma-client-js"
-  output   = "../../packages/core/prisma/cartiqo"
+  provider   = "prisma-client-js"
+  output     = "../../packages/core/prisma/cartiqo"
+  engineType = "client"
 }
 
 datasource cartiqo_db {
   provider = "mysql"
-  url      = env("DATABASE_URL_CARTIQO")
 }
 
 // -----------------------------
