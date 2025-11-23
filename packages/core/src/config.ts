@@ -75,10 +75,6 @@ export const config: ProjectInterface = {
 			name: 'CɅRTIQO.',
 			id: '1044098950455627867',
 		},
-		{
-			name: 'Stachio Development',
-			id: '1415312628175339553',
-		},
 	],
 	colors: {
 		success: 0x57f287,
