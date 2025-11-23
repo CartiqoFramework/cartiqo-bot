@@ -1,6 +1,5 @@
 import { CartiqoClient } from '../../CartiqoClient.js';
-import { BanAction } from '../../../prisma/cartiqo/index.js';
-import type { Prisma } from '../../../prisma/cartiqo/index.js';
+import { BanAction, Prisma } from '../../../prisma/cartiqo/index.js';
 
 //
 // -----------------------------

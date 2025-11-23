@@ -17,7 +17,7 @@ import {
 	EmbedBuilder,
 } from 'discord.js';
 
-import { BanAction } from '@cartiqo-framework/core/prisma/cartiqo/index.js';
+import { BanAction } from '../../../../../../packages/core/prisma/cartiqo/index.js';
 
 const Categories = [
 	{ name: 'Global', value: 'Global' },
